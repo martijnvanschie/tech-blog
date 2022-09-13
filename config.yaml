@@ -1,0 +1,35 @@
+baseURL: http://techblog.martijnvanschie.com/
+languageCode: en-us
+title: Martijn Tech Blog
+theme: ananke
+
+params:
+  defaultTheme: dark
+
+languages:
+  en:
+    title: Martijn van Schie
+    subtitle: Tech Blog
+    keywords: ''
+    menuMore: Show more
+    writtenBy: Written by
+    readMore: Read more
+    readOtherPosts: Read other posts
+    newerPosts: Newer posts
+    olderPosts: Older posts
+    #dateFormatSingle: 2006-01-02
+    #dateFormatList: 2006-01-02
+    
+    params:
+      logo:
+        logoText: martijnvanschie@Azure:~$
+        logoHomeLink: /
+
+    menu:
+      main:
+      - identifier: about
+        name: About
+        url: /about
+      - identifier: tags
+        name: Tags
+        url: /tags
