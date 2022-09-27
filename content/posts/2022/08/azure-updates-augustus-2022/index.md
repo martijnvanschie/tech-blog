@@ -1,14 +1,15 @@
 ---
-title: Azure Updates - September 2022
-date: 2022-09-28T11:14:02+02:00
+title: Azure Updates - Augustus 2022
+date: 2022-08-28T12:00:00+02:00
 description: sdfafdaf
-draft: true
+draft: false
 hiddenFromHomePage: false
 tags:
-    - azure
-    - updates
+    - Network Security Groups
     - networking
     - security
+categories:
+    - Azure Updates
 ---
 
 Welcome to the Azure shorts for August 2022. Below are the azure updates that I personally find the most interesting. All updates are `General Availability` updates so can be used by everybody with a Azure subsription.
@@ -28,9 +29,9 @@ This can be done on different levels
 1. On a grouped scope (Tenant, Subscription or resource group)
 2. On a specific instance by name
 
-Below image shows this new settng in detals.
+Below image shows this new setting in detail.
 
-![alt text](/images/202208-shorts-resource-instance.png "Title")
+![alt text](202208-updates-resource-instance.png "Configure Resource instance access on Azure Storage")
 
 ### Resources
 

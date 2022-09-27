@@ -8,7 +8,7 @@ tags:
     - tools
 ---
 
-My name is Martijn van Schie and I'm a Azure Solution Architect at [Bryte Blue](https://bryte.blue).
+My name is Martijn van Schie and I'm an Azure Solution Architect at [Bryte Blue](https://bryte.blue).
 
 I have over 15 years of experience with both on-premise and cloud solutions and architecture patterns.
 
