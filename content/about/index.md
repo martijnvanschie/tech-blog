@@ -4,8 +4,8 @@ date: 2022-09-01T12:00:02+00:00
 description: sdfafdaf
 draft: false
 tags:
-    - diagrams
-    - tools
+    - About
+    - Bryte Blue
 ---
 
 My name is Martijn van Schie and I'm an Azure Solution Architect at [Bryte Blue](https://bryte.blue).
