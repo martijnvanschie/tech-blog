@@ -1,5 +1,5 @@
 title = "Guy in the Cloud"
-baseURL = 'https://hugo-blog-awesome.netlify.app/'
+baseURL = '/'
 languageCode = 'en-us'
 theme = "hugo-blog-awesome"
 
