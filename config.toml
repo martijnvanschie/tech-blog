@@ -1,128 +1,58 @@
-baseURL = "http://example.org/"
+title = "Guy in the Cloud"
+baseURL = '/'
+languageCode = 'en-us'
+theme = "hugo-blog-awesome"
 
-# Change the default theme to be use when building the site with Hugo
-theme = "LoveIt"
 
-# website title
-title = "Martijn van Schie's Blog"
+# set markup.highlight.noClasses=false to enable code highlight
+[markup]
+  [markup.highlight]
+    noClasses = false
 
-# language code ["en", "zh-CN", "fr", "pl", ...]
-languageCode = "en"
-# language name ["English", "简体中文", "Français", "Polski", ...]
-languageName = "English"
+[menu]
+  [[menu.main]] 
+    # The page reference (pageRef) is useful for menu highlighting
+    # When pageRef is set, setting `url` is optional; it will be used as a fallback if the page is not found.
+    pageRef="/"
+    name = 'Home'
+    url = '/'
+    weight = 10
+  [[menu.main]]
+    pageRef="posts"
+    name = 'Posts'
+    url = '/posts/'
+    weight = 20
+  [[menu.main]]
+    pageRef="about"
+    name = 'About'
+    url = '/about/'
+    weight = 50
+  [[menu.main]]
+    weight = 30
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    title = ""
+  [[menu.main]]
+    weight = 40
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    title = ""    
+
+[params]
+  sitename = "Guy in the Cloud"
+  defaultColor = "light" # set default color mode: dark or light
+  description = "Minimal Hugo blog theme with light and dark mode support"
+
+[params.author]
+  avatar = "img/avatar.jpg"
+  intro = "Guy in the Cloud"
+  name = "Martijn van Schie"
+  description = "A minimalistic Hugo theme with light and dark mode support, for running a personal site or blog"
 
 # Author config
 [author]
   name = "Martijn van Schie"
   email = "martijnvanschie@gmail.com"
-  link = ""
-
-# Menu config
-[menu]
-  [[menu.main]]
-    weight = 1
-    identifier = "home"
-    pre = ""
-    post = ""
-    name = "Home"
-    url = "/"
-    title = ""   
-  [[menu.main]]
-    weight = 1
-    identifier = "posts"
-    # you can add extra information before the name (HTML format is supported), such as icons
-    pre = ""
-    # you can add extra information after the name (HTML format is supported), such as icons
-    post = ""
-    name = "Posts"
-    url = "/posts/"
-    # title will be shown when you hover on this menu link
-    title = ""
-  [[menu.main]]
-    weight = 2
-    identifier = "tags"
-    pre = ""
-    post = ""
-    name = "Tags"
-    url = "/tags/"
-    title = ""
-  [[menu.main]]
-    weight = 3
-    identifier = "categories"
-    pre = ""
-    post = ""
-    name = "Categories"
-    url = "/categories/"
-    title = ""
-  [[menu.main]]
-    weight = 4
-    identifier = "about"
-    pre = ""
-    post = ""
-    name = "About"
-    url = "/about"
-    title = ""    
-
-# Markup related configuration in Hugo
-[markup]
-  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
-  [markup.highlight]
-    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
-    noClasses = false
-
-[params]
-  # site default theme ["auto", "light", "dark"]
-  defaultTheme = "auto"
-  # website title for Open Graph and Twitter Cards  
-  title = "Title from params"
-  # website description for RSS, SEO, Open Graph and Twitter Cards
-  description = "Description from params"
-
-# Header config
-[params.header]
-  # desktop header mode ["fixed", "normal", "auto"]
-  desktopMode = "fixed"
-  # mobile header mode ["fixed", "normal", "auto"]
-  mobileMode = "auto"
-  # Header title config
-  [params.header.title]
-    # URL of the LOGO
-    logo = "/images/logos/azure-logo.svg"
-    # title name
-    name = "hugo serve"
-    # you can add extra information before the name (HTML format is supported), such as icons
-    pre = "<b>martijnvanschie@Azure:~$</b>"
-    # you can add extra information after the name (HTML format is supported), such as icons
-    post = ""
-    # whether to use typeit animation for title name
-    typeit = true
-
-# Home page config
-[params.home]
-  # LoveIt NEW | 0.2.0 amount of RSS pages
-  rss = 10
-  # Home page profile
-  [params.home.profile]
-    enable = true
-    # Gravatar Email for preferred avatar in home page
-    gravatarEmail = "m.vanschie@bryte.blue"
-    # URL of avatar shown in home page
-    ## avatarURL = "/images/avatar.png"
-    # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
-    title = "Welcome to my blog"
-    # subtitle shown in home page (HTML format is supported)
-    subtitle = ""
-    # whether to use typeit animation for subtitle
-    typeit = true
-    # whether to show social links
-    social = true
-    # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
-    disclaimer = ""
-  # Home page posts
-  [params.home.posts]
-    enable = true
-    # special amount of posts in each home posts page
-    paginate = 6
-    # LoveIt DELETED | 0.2.0 replaced with hiddenFromHomePage in params.page
-    # default behavior when you don't set "hiddenFromHomePage" in front matter
-    defaultHiddenFromHomePage = false    
+  link = "https://google.com"  

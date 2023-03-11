@@ -1,11 +1,14 @@
 ---
 title: Something about me :)
-date: 2022-09-01T12:00:02+00:00
+date: 2022-07-01T12:00:02+00:00
 description: sdfafdaf
 draft: false
 tags:
     - About
     - Bryte Blue
+categories:
+    - About
+    - Personalia    
 ---
 
 My name is Martijn van Schie and I'm an Azure Solution Architect at [Bryte Blue](https://bryte.blue).
