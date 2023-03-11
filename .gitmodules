@@ -14,3 +14,6 @@
 	path = themes/hugo-theme-luna
 	url = https://github.com/Ice-Hazymoon/hugo-theme-luna
 	branch = master
+[submodule "themes/hugo-blog-awesome"]
+	path = themes/hugo-blog-awesome
+	url = https://github.com/hugo-sid/hugo-blog-awesome.git
