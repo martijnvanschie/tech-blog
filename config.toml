@@ -1,4 +1,4 @@
-title = "Guy in the Cloud"
+title = "Welcome to my tech-blog"
 baseURL = '/'
 languageCode = 'en-us'
 theme = "hugo-blog-awesome"
@@ -41,15 +41,15 @@ theme = "hugo-blog-awesome"
     title = ""    
 
 [params]
-  sitename = "Guy in the Cloud"
-  defaultColor = "light" # set default color mode: dark or light
-  description = "Minimal Hugo blog theme with light and dark mode support"
+  sitename = "Martijn van Schie"
+  defaultColor = "dark" # set default color mode: dark or light
+  description = "A typical personal tech-blog"
 
 [params.author]
   avatar = "img/avatar.jpg"
-  intro = "Guy in the Cloud"
+  intro = "Martijn van Schie"
   name = "Martijn van Schie"
-  description = "A minimalistic Hugo theme with light and dark mode support, for running a personal site or blog"
+  description = "A typical personal tech-blog"
 
 # Author config
 [author]
