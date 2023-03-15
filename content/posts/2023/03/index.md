@@ -14,7 +14,7 @@ categories:
     - Storytelling
 ---
 
-# Who Am I, an Azure CLI wrapper story
+# `AzWhoAmI`, an Azure CLI wrapper story
 
 ## Why development is still fun for me
 
@@ -53,12 +53,12 @@ Below is an example of the output using my own Azure tenant.
 
 ## GitHub project
 
-Feel free to download and test the CLI. It's available on GutHub.
+Feel free to download and test the CLI. It's available on GitHub.
 
-[AzWhoAmI](https://github.com/martijnvanschie/az-whoami)
+- [AzWhoAmI](https://github.com/martijnvanschie/az-whoami)
 
 ## References
 
-My very own [Create Dotnet Version](https://github.com/martijnvanschie/create-dotnet-versions-action) GitHub action  
-A command-line wrapper library called [CliWrap](https://github.com/Tyrrrz/CliWrap)  
-This awesome [Spectre.Console](https://github.com/spectreconsole/spectre.console) library to create fancy console apps
+- My very own [Create Dotnet Version](https://github.com/martijnvanschie/create-dotnet-versions-action) GitHub action.
+- A command-line wrapper library called [CliWrap](https://github.com/Tyrrrz/CliWrap)
+- This awesome [Spectre.Console](https://github.com/spectreconsole/spectre.console) library to create fancy console apps
