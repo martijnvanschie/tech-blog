@@ -114,7 +114,7 @@ This shows us that the following logs are the largest.
 - StorageTableLogs
 - Perf
 
-I'm interested in the `StorageTableLog` as there could be some logging that is not required. The `StorageTableLog` is specific to storage accounts and contains a specific schema.
+I'm interested in the `StorageTableLog` as there could be some logging that might be excessive and is not required. The `StorageTableLog` is specific to storage accounts and contains a specific schema.
 
 The following query will show the amount of entries that are logged per operation using the `OperationName` column. This could give some indication of the diagnostics settings we need to look into.
 
@@ -138,13 +138,17 @@ StorageTableLogs
 
 ![Usage by log](log-analytics-query05.png "Log count per account")
 
+We can see that some are contributing to almost half of the data in the log. 
+
 ### Check the diagnostics settings
 
-So let's take a look at the diagnostics settings of this large storage account.
+Let's take a look at this storage account in the portal, in particular the diagnostics settings of this large storage account.
 
 ![Usage by log](diagnostics-settings-01.png "Storage table diagnostics settings")
 
-We can see that all the categories are selected, and that metrics is enabled. This could be a valid configuration based on your business requirements but perhaps tha `StorageWrite` is not always required. If you have proper error handling in your application, a write error will be logged when caught. But for auditing is might be required to enable all the categories. 
+We can see that all the categories are selected, and that metrics is enabled. This could be a valid configuration based on your business requirements but perhaps the `StorageWrite` is not always required. If you have proper error handling in your application, a write error will be logged when caught. But for auditing is might be required to enable all the categories.
+
+> It's not up to me to tell you if you need the logging, only to find it :)
 
 ## Use Case 2 - Another example
 
@@ -157,27 +161,28 @@ Usage
 | render piechart 
 ```
 
-
 ![Usage by log](log-analytics-query06.png "Log count per account")
-
 
 ```sql
 Usage
+| where TimeGenerated > startofday(ago(3d))
 | where Solution has "LogManagement"
 | summarize IngestedGB = sum(Quantity) / 1000 by Solution, DataType
 | project DataType, Solution,  IngestedGB
 | order by IngestedGB desc
 | top 5 by IngestedGB
-| render piechart 
+| render barchart
 ```
 
 ![Usage by log](log-analytics-query07.png "Log count per account")
 
 This shows us that the following logs are the largest.
 
+- AppTraces (with almost 3 GB in three days)
 - AppPerformanceCounters
-- AppTraces
 - AppMetrics
+
+### Checking the `AppPerformanceCounters`, just in case
 
 So `AppPerformanceCounters` are logged every 5 seconds. This is a normal behavior and is expected to result in large log tables. But let's check for anomalies just in case.
 
@@ -187,6 +192,7 @@ The following query gets the top 10 instances for the `AppPerformanceCounters` l
 
 ```sql
 AppPerformanceCounters
+| where TimeGenerated > startofday(ago(1d))
 | summarize count() by AppRoleInstance
 | top 10 by count_
 | render piechart   
@@ -194,7 +200,9 @@ AppPerformanceCounters
 
 ![Usage by log](log-analytics-query08.png "Log count per account")
 
-Nothing special here. All top 10 instances log evenly distributed so we can consider this normal behaviour.
+Nothing special here. All top 10 instances log evenly distributed so we can consider this normal behavior.
+
+### What about the `AppTraces`?
 
 The `AppTraces` can be interesting to look at next. 
 
@@ -202,6 +210,7 @@ Let first look at the log levels as this might indicate if there is actually a s
 
 ```sql
 AppTraces
+| where TimeGenerated > startofday(ago(1d))
 | summarize count() by SeverityLevel
 | render barchart  
 ```
@@ -216,6 +225,7 @@ So who is logging all these Information messages, lets find out. Using the follo
 
 ```sql
 AppTraces
+| where TimeGenerated > startofday(ago(1d))
 | summarize count() by AppRoleInstance, SeverityLevel
 | top 10 by count_
 | render barchart
