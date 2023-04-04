@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor - A look at your log producer
-date: 2023-04-01T12:00:00+02:00
+date: 2023-04-04T12:00:00+02:00
 description: An Azure CLI tool that let's you see the currently logged in user
 draft: false
 hiddenFromHomePage: false
@@ -39,7 +39,7 @@ Resources in Azure can also log to multiple logs at the same time. This requires
 
 ## The focus of today's blog
 
-This blog focusses on getting more insights into the data of your logs, their size and the cost. And although Azure monitor, and Log Analytics Workspace, have a nice interface to get some basic insights into your usage, as technical guy i want to figure this out myself ;).
+This blog focusses on getting more insights into the data of your logs and the log producers. And although Azure monitor, and Log Analytics Workspace, have a nice interface to get some basic insights into your usage, as technical guy i want to figure this out myself ;).
 
 ## Get information about usage
 
@@ -63,19 +63,19 @@ Usage
 
 ![Usage by ](log-analytics-query01.png "Azure Who Am I")
 
-On the left we have grouped the logs by `Solution`. We see subnodes that represent the logs for this Solution. On the right you see the query and the results. Only the relevant columns are projected. You can see that a log analytics Solution in the UI actually is aggregated from different Solutions and DataTypes (Like `InsightsMetrics`, `VMBoundPort` etc.).
+On the left we have grouped the logs by `Solution`. We see subnodes that represent the actual logs for this Solution. On the right you see the query and the results. Only the relevant columns are projected. You can see that a log analytics Solution in the UI actually is aggregated from different Solutions and DataTypes (Like `InsightsMetrics`, `VMBoundPort` etc.).
 
 > The `Count` shows how many entries the Usage log has per `Solution`, per `DataType` for the given period.
 
-## So how can we use this table
+## So how can we use this table?
 
 ### Use Case 1 - Investigate storage account logs
 
-We can start by querying the `Usage` table to find the top consuming tables by Solution. The following query will do exactly that.
+We can start by querying the `Usage` table to find the top consuming tables by Solution. The following query will do exactly that. We take the logs from the last 30 days and plot this to a pie chart.
 
 ```sql
 Usage
-| where TimeGenerated > startofday(ago(90d))
+| where TimeGenerated > startofday(ago(30d))
 | where IsBillable == true
 | summarize IngestedGB = sum(Quantity) / 1000 by Solution
 | sort by IngestedGB desc
@@ -98,7 +98,7 @@ The following query will add the `DataType` to the equation and show the top 5 l
 
 ```sql
 Usage
-| where Solution has "LogManagement"
+| where Solution == "LogManagement"
 | summarize IngestedGB = sum(Quantity) / 1000 by Solution, DataType
 | project DataType, Solution,  IngestedGB
 | order by IngestedGB desc
@@ -127,7 +127,7 @@ StorageTableLogs
 
 ![Usage by log](log-analytics-query04.png "Log count per operation")
 
-And lets also look at the top 3 storage accounts that contribute to this logsize
+Apparently there are a lot of insert statements into the storage table. The question is if we want to log all these actions in a normal scenario. Lets look at the top 3 storage accounts that contribute to this log size.
 
 ```sql
 StorageTableLogs
@@ -138,7 +138,7 @@ StorageTableLogs
 
 ![Usage by log](log-analytics-query05.png "Log count per account")
 
-We can see that some are contributing to almost half of the data in the log. 
+We can see that some are contributing to almost half of the data in the log.
 
 ### Check the diagnostics settings
 
@@ -150,11 +150,17 @@ We can see that all the categories are selected, and that metrics is enabled. Th
 
 > It's not up to me to tell you if you need the logging, only to find it :)
 
-## Use Case 2 - Another example
+Let's look at another scenario, just to get a general idea on how to approach this topic.
+
+## Use Case 2 - The case of TMI (To much info)
+
+Again, let's start with the high log producers per solution. We need to run the following query.
+
+> For all the alert readers, same query, different result. Yeah, different tenant :)
 
 ```sql
 Usage
-| where TimeGenerated > startofday(ago(90d))
+| where TimeGenerated > startofday(ago(30d))
 | where IsBillable == true
 | summarize IngestedGB = sum(Quantity) / 1000 by Solution
 | sort by IngestedGB desc
@@ -163,10 +169,14 @@ Usage
 
 ![Usage by log](log-analytics-query06.png "Log count per account")
 
+In this case only `LogManagement` is producing all the logs.
+
+Let's check the biggest log producer in this solution, this time using a bar chart to visualize the size of the logs.
+
 ```sql
 Usage
 | where TimeGenerated > startofday(ago(3d))
-| where Solution has "LogManagement"
+| where Solution == "LogManagement"
 | summarize IngestedGB = sum(Quantity) / 1000 by Solution, DataType
 | project DataType, Solution,  IngestedGB
 | order by IngestedGB desc
@@ -184,7 +194,7 @@ This shows us that the following logs are the largest.
 
 ### Checking the `AppPerformanceCounters`, just in case
 
-So `AppPerformanceCounters` are logged every 5 seconds. This is a normal behavior and is expected to result in large log tables. But let's check for anomalies just in case.
+So `AppPerformanceCounters` are basically metrics and are logged every 5 seconds. This is a normal behavior and is expected to result in large log tables. But let's check for anomalies just in case.
 
 The following query gets the top 10 instances for the `AppPerformanceCounters` log to check for one or more excessive logging instances.
 
@@ -217,7 +227,7 @@ AppTraces
 
 ![Usage by log](log-analytics-query09.png "Log count per account")
 
-Well, sevirity level `1` is actually [Information](https://learn.microsoft.com/en-us/dotnet/api/microsoft.applicationinsights.datacontracts.severitylevel?view=azure-dotnet) and perhaps this is not really required when there are not issues reported.
+WNope, no issues. Severity level `1` is actually [Information](https://learn.microsoft.com/en-us/dotnet/api/microsoft.applicationinsights.datacontracts.severitylevel?view=azure-dotnet) and perhaps this is not really required when there are no issues reported.
 
 So who is logging all these Information messages, lets find out. Using the following query we try to get the top 10 instances that generate logs to see if one or more stand out.
 
