@@ -1,6 +1,6 @@
 ---
 title: Why i created an Azure CLI wrapper
-date: 2023-03-14T12:00:00+02:00
+date: 2023-03-24T12:00:00+02:00
 description: An Azure CLI tool that let's you see the currently logged in user
 draft: false
 hiddenFromHomePage: false
