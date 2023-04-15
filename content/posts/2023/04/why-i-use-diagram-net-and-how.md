@@ -1,7 +1,7 @@
 ---
 title: Why i use diagrams.net as my GoTo diagrams app
-date: 2022-09-13T00:00:02+00:00
-description: sdfafdaf
+date: 2023-04-07T00:00:02+00:00
+description: Why i use diagrams.net as my GoTo diagrams app
 draft: true
 tags:
     - diagrams
@@ -10,9 +10,7 @@ tags:
 
 I'm getting a lot of questions lately from people asking me what tool(s) i use to create my diagrams. You will be surprised that this is actually a free tool which is accessible to everyone.
 
-{{< admonition note "Disclaimer" >}}
-Please note that this is my personal opinion. There are many tools out there and some might have the same features a this one. I did not test all other tools.
-{{< /admonition >}}
+> Please note that this is my personal opinion. There are many tools out there and some might have the same features a this one. I did not test all other tools.
 
 # My history in creating diagrams
 
@@ -46,7 +44,9 @@ After many attempts i finally got the chance to obtain a [Sparx Enterprise Archi
 
 ### ArchiMate
 
-When i became a Solution Architect i was working more and more on a higher level of abstraction. UML was replaces by a modeling framework, which i came across during my TOGAF training, called [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview). This modeling framework was especially designed for enterprise architectures and focusses on business-, application- and infrastructure layers. Later some additional layers where introduced but i never really used these.
+When i became a Solution Architect i was working more and more on a higher level of abstraction. The application details modelled by UML where replaces by a modeling framework, which i came across during my TOGAF training, called [ArchiMate](https://www.opengroup.org/archimate-forum/archimate-overview). This modeling framework has an high level of abstraction and is especially designed for enterprise architectures and focusses on business-, application- and infrastructure layers (And in the later versions some additional layers where introduced but i never really used these). 
+
+Where UML structures classes and objects of one or more applications, ArchiMate designs from the level of applications and the relationships to the rest of the solution. With ArchiMate the class models where replaced with 
 
 Initially i kept using Sparx as it also contained the ArchiMate framework but as the scope of the diagrams became more and more limited to ArchiMate i turned to [Archi](https://www.archimatetool.com/). This tool is free and is based on the eclipse IDE. It's specifically written for ArchiMate and contained the lated versions and elements which where required.
 
