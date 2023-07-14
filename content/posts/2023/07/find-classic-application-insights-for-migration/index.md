@@ -6,8 +6,9 @@ draft: false
 hiddenFromHomePage: false
 tags:
     - Azure Monitor
+    - Application Insights
+    - Azure Resource Graph Explorer
     - KQL
-    - Application INsights
 categories:
     - Azure
 ---
@@ -53,11 +54,11 @@ Lastly, when navigating to an application insights overview blade, we also get a
 
 ## Finding "classic" application insights
 
-So how do we find these classic application insights resources. If we only have a few it is pretty easy to do. Just go to the blades and chech the warning signs.
+So how do we find these classic application insights resources. If we only have a few it is pretty easy to do. Just go to the blades and check the warning signs.
 
 But what is we have many of these resources, do we need to go trough all of them. Probably not. Lets look into the power of KQL and the Azure Resource Graph Explorer
 
-If we look at the upgrade steps its pretty easy to determine how to detect the classic application insights. We can look at thevalue of the Workspace property.
+If we look at the upgrade steps its pretty easy to determine how to detect the classic application insights. We can look at the value of the Workspace property.
 
 Classic based have an empty property
 
@@ -105,7 +106,7 @@ resources
 
 Azure would not be Azure if these things could be automated and governed using the power of Azure policies.
 
-There is a Azure Policy definion available which allows you to monitor for application insights there are not linked to a log analytics workspace. 
+There is a Azure Policy definition available which allows you to monitor for application insights there are not linked to a log analytics workspace. 
 
 You can also use this to `deny` deploying a application insights resource using the classic mode, for instance using IaC.
 
@@ -116,7 +117,7 @@ You can also use this to `deny` deploying a application insights resource using 
 
 In this blog i've showed you how to use the power of KQL to find resources in your environment based on your personal criteria. In this case we used the information from the application insights migration tutorial to find all resources which are not compliant to the new configuration.
 
-I hope this was usefull and i can help you in your daily work.
+I hope this was useful and i can help you in your daily work.
 
 ## Other resources
 
