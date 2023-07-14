@@ -43,7 +43,7 @@ Well, there are a few ways that you might have been informed.
 
 First of all, Microsoft has send out an email to customers which are using the classic application insights in Azure Monitor.
 
-Second, when creating a new application insights resource using the portal (Which reall engineers don't do ofcourse ;)), we get a nice yellow `warning`` message telling us that this mode is deprecated.
+Second, when creating a new application insights resource using the portal (which doesn't happen because we all use [Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep) right.), we get a nice yellow `warning`` message telling us that this mode is deprecated.
 
 ![Usage by ](create-app-insights-warning.png "New application insights")
 
@@ -105,7 +105,9 @@ resources
 
 Azure would not be Azure if these things could be automated and governed using the power of Azure policies.
 
-There is a Azure Policy definion available which allows you to monitor for application insights there are not linked to a log analytics workspace.
+There is a Azure Policy definion available which allows you to monitor for application insights there are not linked to a log analytics workspace. 
+
+You can also use this to `deny` deploying a application insights resource using the classic mode, for instance using IaC.
 
 [Azure Policy definition at AzAdvertizer](https://www.azadvertizer.net/azpolicyadvertizer/d550e854-df1a-4de9-bf44-cd894b39a95e.html)
 
