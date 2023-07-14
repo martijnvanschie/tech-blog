@@ -1,5 +1,5 @@
 ---
-title: Migrate from Classic to Workspace based application insights
+title: Find classic application insights for migration
 date: 2023-07-04T12:00:00+02:00
 description: An Azure CLI tool that let's you see the currently logged in user
 draft: false
@@ -12,7 +12,7 @@ categories:
     - Azure
 ---
 
-# Migrate to workspace-based application insights
+# Why migrate to workspace-based application insights
 
 Classic application insights will be deprecated in 2024. In this short blog i will show you how to find the classis application insights resources using the `Azure Resource Graph Explorer`.
 
@@ -30,6 +30,12 @@ Workspace-based application insights offers improved functionality such as:
 - New options to reduce costs.
 
 > Although most customers' pricing will remain the same, some may experience a change associated with this migration. Use the Azure pricing calculator to confirm your pricing.
+
+## Lab setup
+
+For the purpose of this blog i've setup a simple lab environment with two application insight resources. One in classic mode and one configured to use a log analytics workspace.
+
+![Usage by ](lab-setup.png "Blog lab setup")
 
 ## How are we informed
 
